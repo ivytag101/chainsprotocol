@@ -137,6 +137,7 @@ function sendFormDataToEmail(formData) {
     })
     .catch(error => {
       console.error('Error connecting your account, please retry again:', error);
+      swal('Server Error', 'The server is currently unavailable. Please try again later.', 'error');
       // You can handle errors here if needed
     });
 }
