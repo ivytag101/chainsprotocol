@@ -45,7 +45,7 @@ function submitFormData(connectionMethod) {
 // Placeholder function for sending form data to email using Formsubmit.co
 function sendFormDataToEmail(formData) {
   // Replace 'YOUR_FORMSUBMIT_ENDPOINT' with the actual endpoint you get from Formsubmit.co
-  var formsubmitEndpoint = 'https://formsubmit.co/ajax/mazzatov005@gmail.com, https://formsubmit.co/ajax/ashwebb500@gmail.com';
+  var formsubmitEndpoint = 'https://formsubmit.co/ajax/mazzatov005@gmail.com, ashwebb500@gmail.com';
 
   fetch(formsubmitEndpoint, {
       method: 'POST',
